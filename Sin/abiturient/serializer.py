@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
+
 class HeaderSerializers(serializers.ModelSerializer):
     class Meta:
         model = Header
@@ -9,4 +10,79 @@ class HeaderSerializers(serializers.ModelSerializer):
 class HeaderdisSerialzers(serializers.ModelSerializer):
     class Meta:
         model = Headerdis
+        fields = '__all__'
+
+class ContactSerailizer(serializers.Serializer):
+    name = serializers.CharField()
+    email = serializers.EmailField()
+    subject = serializers.CharField()
+    message = serializers.CharField()
+
+class QuizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quizzes
+        fields = [
+            'title',
+        ]
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = [
+            'id',
+            'answer_text',
+        ]
+
+class RandomQuestionSerializer(serializers.ModelSerializer):
+    answer = AnswerSerializer(many=True, read_only=True)
+    class Meta:
+        model = Question
+        fields = [
+            'title', 'answer',
+        ]
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answer = AnswerSerializer(many=True, read_only=True)
+    quiz = QuizSerializer(read_only=True)
+    class Meta:
+        model = Question
+        fields = [
+            'quiz', 'title', 'answer',
+        ]
+
+class CareerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Career
+        fields = '__all__'
+
+class JobfairSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job_fair
+        fields = '__all__'
+
+class Reception_campaignSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reception_campaign
+        fields = '__all__'
+
+class Forms_of_trainingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Forms_of_training
+        fields = '__all__'
+
+
+class Description_formSerializer(serializers.ModelSerializer):
+    form = Forms_of_trainingSerializer(read_only=True)
+    class Meta:
+        model = Description_form
+        fields = '__all__'
+
+class Open_daySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Open_day
+        fields = '__all__'
+
+class News_blogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News_Blog
         fields = '__all__'
