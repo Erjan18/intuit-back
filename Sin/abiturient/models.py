@@ -147,7 +147,32 @@ class News_Blog(models.Model):
 
     name = models.CharField(max_length=300)
     date_created = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to='upload_to')
+    photo = models.ImageField(upload_to='images/',blank=True)
 
     def __str__(self):
         return self.name
+
+class Connect(models.Model):
+
+    class Meta:
+        verbose_name = _("Связь")
+        verbose_name_plural = _("Связь")
+
+    name = models.CharField(max_length=400)
+
+    def __str__(self):
+        return self.name
+
+class File(models.Model):
+
+    class Meta:
+        verbose_name = _("Информация")
+        verbose_name_plural = _("Информация")
+
+    file = models.FileField(blank=False, null=False)
+
+    def __str__(self):
+        return self.file
+
+
+

@@ -83,6 +83,18 @@ class Open_daySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class News_blogSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(
+        max_length=None, allow_empty_file=False, allow_null=False, use_url=True, required=False)
     class Meta:
         model = News_Blog
         fields = '__all__'
+
+class ConnectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Connect
+        fields = '__all__'
+
+class FileSerializer(serializers.ModelSerializer):
+  class Meta():
+    model = File
+    fields = '__all__'

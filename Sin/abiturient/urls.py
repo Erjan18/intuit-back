@@ -18,5 +18,7 @@ urlpatterns = [
     path('description/',Description_formView.as_view(),name='description'),
     path('open/',Open_dayView.as_view(),name='open'),
     path('news/',News_blogView.as_view(),name='news'),
+    path('connect/',ConnectView.as_view(),name='connect'),
+    path('upload/',FileView.as_view(),name='upload'),
 
 ]

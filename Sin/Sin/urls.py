@@ -6,6 +6,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',include('abiturient.urls'))
+    path('abiturient/', include('abiturient.urls')),
+    path('bachelor/', include('bachelor.urls')),
+    path('aspirantura/',include('aspirantura.urls')),
+    path('magistracy/',include('magistracy.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

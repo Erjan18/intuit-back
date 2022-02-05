@@ -1,10 +1,10 @@
 from django.contrib import admin
 from . import models
-from .models import Header,Headerdis,Career,Job_fair,Reception_campaign,Forms_of_training,Description_form,Open_day,News_Blog
-
+from .models import Headerdis,Career,Job_fair,Reception_campaign,Forms_of_training,Description_form,Open_day,News_Blog,Connect,File
+from .models import Header
 
 admin.site.register([Header,Headerdis,Career,Job_fair,Reception_campaign,Forms_of_training,Description_form,
-                     Open_day,News_Blog])
+                     Open_day,News_Blog,Connect,File])
 
 class Contact(admin.ModelAdmin):
     list_display = ('last_name','number','mail')

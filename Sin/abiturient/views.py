@@ -7,7 +7,7 @@ from rest_framework import status, viewsets,permissions,generics
 from rest_framework.viewsets import ModelViewSet
 from django.views.generic import CreateView
 from django.core.mail import send_mail
-
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class HeadView(APIView):
@@ -25,18 +25,20 @@ class FeedBackView(APIView):
     serializer_class = ContactSerailizer
 
     def post(self, request, *args, **kwargs):
-        serializer_class = ContactSerailizer(data=request.data)
-        if serializer_class.is_valid():
-            data = serializer_class.validated_data
-            name = data.get('name')
-            from_email = data.get('email')
-            subject = data.get('subject')
-            message = data.get('message')
-            try:
+        try:
+            serializer_class = ContactSerailizer(data=request.data)
+            if serializer_class.is_valid():
+                data = serializer_class.validated_data
+                name = data.get('name')
+                from_email = data.get('email')
+                subject = data.get('subject')
+                message = data.get('message')
                 send_mail(f'От {name} | {subject}',message, from_email, ['zumc4847@gmail.com'])
-            except AssertionError:
-                return Response({'Failed to send'})
-        return Response({"success": "Sent"})
+                return Response("Succes:Sent")
+            else:
+                return Response("Failed to Send")
+        except Exception as err:
+            return Response({err})
 
 class Quiz(generics.ListAPIView):
 
@@ -99,3 +101,19 @@ class News_blogView(APIView):
         name = News_Blog.objects.all()
         serializer = News_blogSerializer(name,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class ConnectView(APIView):
+    def get(self,*args,**kwargs):
+        name = Connect.objects.all()
+        serializer = ConnectSerializer(name,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+class FileView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+    def post(self, request, *args, **kwargs):
+        file_serializer = FileSerializer(data=request.data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
