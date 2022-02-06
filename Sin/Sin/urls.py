@@ -9,7 +9,8 @@ urlpatterns = [
     path('abiturient/', include('abiturient.urls')),
     path('bachelor/', include('bachelor.urls')),
     path('aspirantura/',include('aspirantura.urls')),
-    path('magistracy/',include('magistracy.urls'))
+    path('magistracy/',include('magistracy.urls')),
+    path('commission/',include('commission.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

@@ -42,13 +42,14 @@ INSTALLED_APPS = [
     'aspirantura',
     'bachelor',
     'magistracy',
+    'commission',
     'rest_framework'
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'era.kar02@gmail.com'
+EMAIL_HOST_USER = 'era.kat2002@gmail.com'
 EMAIL_HOST_PASSWORD = '!Dethnote99'
 EMAIl_PORT = 587
 
