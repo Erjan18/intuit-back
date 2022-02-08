@@ -46,3 +46,14 @@ class ParagraphDis(models.Model):
 
     def __str__(self):
         return self.name
+
+class Open_day(models.Model):
+
+    class Meta:
+        verbose_name = _("День открытых дверей")
+        verbose_name_plural = _("День открытых дверей")
+
+    name = models.CharField(max_length=400)
+
+    def __str__(self):
+        return self.name

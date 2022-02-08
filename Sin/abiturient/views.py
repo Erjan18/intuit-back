@@ -16,6 +16,12 @@ class HeadView(APIView):
         serializer = HeaderSerializers(name,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
+class HeaderView(APIView):
+    def get(self,*args,**kwargs):
+        name = HeadDis.objects.all()
+        serializer = HeadDisSerializer(name,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
 class HeadisView(viewsets.ModelViewSet):
     queryset = Headerdis.objects.all()
     serializer_class = HeaderdisSerialzers

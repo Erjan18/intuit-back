@@ -12,6 +12,18 @@ class Header(models.Model):
     def __str__(self):
         return self.name
 
+class HeadDis(models.Model):
+
+    class Meta:
+        verbose_name = _("Описание Главной страницы")
+        verbose_name_plural = _("Описание Главной страницы")
+
+    name = models.CharField(max_length=200)
+    header = models.ForeignKey(Header,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 class Headerdis(models.Model):
     name = models.CharField(max_length=200)
 

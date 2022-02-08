@@ -7,6 +7,12 @@ class HeaderSerializers(serializers.ModelSerializer):
         model = Header
         fields = '__all__'
 
+class HeadDisSerializer(serializers.ModelSerializer):
+    head = HeaderSerializers(read_only=True,many=True)
+    class Meta:
+        model = HeadDis
+        fields = '__all__'
+
 class HeaderdisSerialzers(serializers.ModelSerializer):
     class Meta:
         model = Headerdis

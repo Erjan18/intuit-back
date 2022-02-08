@@ -22,3 +22,8 @@ class ParagraphDisSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParagraphDis
         fields = '__all__'
+
+class Open_daySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Open_day
+        fields = '__all__'

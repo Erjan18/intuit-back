@@ -6,6 +6,7 @@ router.register('header',HeadisView)
 
 urlpatterns = [
     path('head/',HeadView.as_view(),name='head'),
+    path('headdis/',HeaderView.as_view(),name='headdis'),
     path('career/',CareerView.as_view(),name='career'),
     path('',include(router.urls)),
     path("feedback/",FeedBackView.as_view(),name='feedback'),

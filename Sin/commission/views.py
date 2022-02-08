@@ -29,3 +29,10 @@ class ParagraphDisView(APIView):
         name = ParagraphDis.objects.all()
         serializer = ParagraphDisSerializer(name,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class OpendayView(APIView):
+    def get(self,*args,**kwargs):
+        name = Open_day.objects.all()
+        serializer = Open_daySerializer(name,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
