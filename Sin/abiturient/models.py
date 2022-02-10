@@ -25,6 +25,11 @@ class HeadDis(models.Model):
         return self.name
 
 class Headerdis(models.Model):
+
+    class Meta:
+        verbose_name = _("Доп Главная")
+        verbose_name_plural = _("Доп Главная")
+
     name = models.CharField(max_length=200)
 
     def __str__(self):
