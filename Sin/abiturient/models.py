@@ -45,7 +45,7 @@ class Quizzes(models.Model):
         ordering = ['id']
 
     title = models.CharField(max_length=255, default=_("New Quiz"), verbose_name=_("Quiz Title"))
-    category = models.ForeignKey(Category, default=1, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -62,7 +62,7 @@ class Question(Updated):
         verbose_name_plural = _("Questions")
         ordering = ['id']
 
-    quiz = models.ForeignKey(Quizzes, related_name='question', on_delete=models.DO_NOTHING)
+    quiz = models.ForeignKey(Quizzes, related_name='question', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name=_("Title"))
     date_created = models.DateTimeField(auto_now_add=True, verbose_name=_("Date Created"))
     is_active = models.BooleanField(default=False, verbose_name=_("Active Status"))
@@ -76,7 +76,7 @@ class Answer(Updated):
         verbose_name_plural = _("Answers")
         ordering = ['id']
 
-    question = models.ForeignKey(Question, related_name='answer', on_delete=models.DO_NOTHING)
+    question = models.ForeignKey(Question, related_name='answer', on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=255, verbose_name=_("Answer Text"))
     is_right = models.BooleanField(default=False)
 
